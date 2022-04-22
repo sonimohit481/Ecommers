@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In</title>
+    <style>
+      .main {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        margin: 100px auto;
+        text-align: center;
+        border: 2px solid black;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .main div{
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+      }
+      #btn{
+        width: 90%;
+        padding: 5px;
+        font-size: 15px;
+        border-radius: 10px;
+        color: black;
+        font-weight: 700;
+        background-color: rgb(69, 210, 165);
+        /* padding: 100px; */
+      }
+      @media (max-width:700px){
+        .main{
+          width: 70%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h1>Log-In</h1>
+      <form id="myform">
+        <div>
+          <label for="email">Enter Email:</label>
+          <input type="email" id="email" />
+        </div>
+        <div>
+          <label for="psw">Password: </label>
+          <input type="password" id="psw" />
+        </div>
+        <div>
+          <input type="submit" value="Sign-UP"  id="btn"/>
+        </div>
+       
+      </form>
+    </div>
+  </body>
+  <script>
+    document.querySelector("#myform").addEventListener("submit", logg);
+var loginarray;
+    if(localStorage.getItem("user")===null){
+        loginarray=[]
+    }
+    else{
+        loginarray=JSON.parse(localStorage.getItem("user"));
+    }
+    function logg(event) {
+      event.preventDefault();
+      var loguser = document.querySelector("#email").value;
+      var logpsw = document.querySelector("#psw").value;
+      
+      var x=0;
+      loginarray.forEach((ele) => {
+
+        if (ele.email === loguser && ele.psw === logpsw) {
+          alert("You have Log in Successfully noe try to start shopping");
+          window.location.href = "Mens.html";
+        }
+        else{
+          if(x===0){
+            alert("invalid Credential");
+            x=1;
+          }
+          
+        }
+      });
+    }
+  </script>
+</html>
