@@ -284,8 +284,11 @@
 
       var sprice = document.createElement("p");
       sprice.innerText = "Discount price: " + ele.strikedoffprice;
+      
+      var cart = document.createElement("button");
+      cart.innerText ="Add To Cart"
 
-      box.append(img, name, price, sprice);
+      box.append(img, name, price, sprice,cart);
       document.querySelector("#main").append(box);
     });
   </script>
