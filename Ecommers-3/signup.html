@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        .main{
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            margin: 100px auto;
+            text-align: center;
+            border: 2px solid black;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .main div{
+            display: flex;
+            /* width: 90%; */
+            padding: 5px;
+            justify-content: space-around;
+        }
+        #btn{
+        width: 90%;
+        padding: 5px;
+        font-size: 15px;
+        border-radius: 10px;
+        color: black;
+        font-weight: 700;
+        background-color: rgb(69, 210, 165);
+        /* padding: 100px; */
+      }
+        @media (max-width:700px){
+        .main{
+          width: 70%;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>Sign-UP</h1>
+        <form id="myform">
+            <div><label for="email">Enter Email:</label>
+                <input type="email" id="email"></div>
+            <div>
+                <label for="no">Enter Phone no :</label>
+                <input type="number" id="no">
+            </div>
+            <div>
+                <label for="psw">Password</label>
+                <input type="password" id="psw">
+            </div>
+            <div>
+                <input type="submit" value="Sign-UP" id="btn">
+
+            </div>
+
+            
+        </form>
+    </div>
+</body>
+<script>
+    document.querySelector("#myform").addEventListener("submit",signup);
+    var signuparray;
+    if(localStorage.getItem("user")===null){
+        signuparray=[]
+    }
+    else{
+        signuparray=JSON.parse(localStorage.getItem("user"));
+    }
+    function signup(event){
+        event.preventDefault();
+
+        var signupobj={
+            email:document.querySelector("#email").value,
+            phone:document.querySelector("#no").value,
+            psw:document.querySelector("#psw").value,
+        };
+        signuparray.push(signupobj);
+        localStorage.setItem("user",JSON.stringify(signuparray));
+        alert("Your sign up is completed sucessfully \n now try to log in");
+        window.location.href="login.html";
+    }
+</script>
+</html>
