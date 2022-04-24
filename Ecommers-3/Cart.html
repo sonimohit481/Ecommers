@@ -7,46 +7,7 @@
     <link rel="stylesheet" href="./style.css" />
     <title>Cart</title>
     <style>
-      h1 {
-        color: black;
-        font-weight: 900;
-        text-align: center;
-      }
-      #cartmain {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        width: 90%;
-        margin: auto;
-      }
-      #cartmain > div {
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        padding: 10px;
-        margin: 10px;
-        text-align: center;
-      }
 
-      #MSG {
-        display: flex;
-        justify-content: space-around;
-        font-size: 20px;
-        font-weight: 800;
-      }
-      #form2 {
-        display: flex;
-        justify-content: center;
-      }
-      #form2 input{
-          margin: 20px 0 40px 0;
-          padding: 20px 50px;
-          font-size: 20px;
-          font-weight: 700;
-          border-radius: 10px;
-          cursor: pointer;
-          /* border: 0; */
-      }
     </style>
   </head>
   <body>
@@ -62,11 +23,17 @@
       <!-- <div id="per"></div>
         <div id="pri"></div> -->
     </div>
+    <div id="promo">
+      <form id="form3">
+        <input type="text" id="promocode" />
+        <button type="submit">Apply promo code</button>
+      </form>
+    </div>
     <div id="cartmain"></div>
 
     <div id="payment">
       <form id="form2">
-        <input type="submit" value="Continue to Payment" />
+        <input type="submit" value="Continue to Payment" id="pay" />
       </form>
     </div>
   </body>
@@ -81,11 +48,31 @@
     var p1 = document.createElement("p");
     p1.innerText = "Total item's in cart: " + item;
     var p2 = document.createElement("p");
+    p2.setAttribute("class", "promobtn");
     p2.innerText = "Total Amount to be paid: " + totalsum;
 
-    // document.querySelector("#pre").append(p1);
-    // document.querySelector("#pri").append(p2);
     document.querySelector("#MSG").append(p1, p2);
+
+    document.querySelector("#form3").addEventListener("submit", promo);
+
+    function promo(event) {
+      event.preventDefault();
+      var p = document.querySelector("#promocode").value;
+      if (p === "masai30") {
+        var sum = totalsum;
+        sum =Math.floor( sum - sum * 0.3);
+        
+        var msg = document.createElement("p");
+        msg.innerText =
+          "Previous value: " + totalsum + ";\nDiscounted value: " + sum;
+          totalsum=sum
+        document.querySelector(".promobtn").innerText = "";
+        document.querySelector(".promobtn").append(msg);
+        alert("Promocode applied");
+      } else {
+        alert("Wrong promo code");
+      }
+    }
     cartdata.forEach((ele, index) => {
       var box = document.createElement("div");
 

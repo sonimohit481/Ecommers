@@ -42,6 +42,13 @@ body {
     width: 100%;
     border-radius: 10px;
   }
+
+
+
+
+
+
+  
   button{
       padding: 7px 20px;
       border-radius: 10px;
@@ -51,6 +58,68 @@ body {
       cursor: pointer;
       margin: 10px;
   }
+
+
+
+  h1 {
+    color: black;
+    font-weight: 900;
+    text-align: center;
+  }
+  #cartmain {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 90%;
+    margin: auto;
+  }
+  #cartmain > div {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+  }
+
+  #MSG {
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  #form2 {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  #form2 input {
+    margin: 20px 0 40px 0;
+    padding: 20px 50px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    /* border: 0; */
+  }
+  #form3 {
+    display: flex;
+    margin: auto;
+    width: 70%;
+    justify-content: flex-end;
+  }
+  #form3 button {
+    padding: 7px 20px;
+    border-radius: 10px;
+    border: 0;
+    color: black;
+    background-color: rgb(95, 181, 181);
+    cursor: pointer;
+    margin: 0 32px;
+  }
+
+
+
+
   @media (max-width: 900px) {
     #main {
       grid-template-columns: repeat(3, 1fr);
