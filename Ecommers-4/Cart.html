@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Cart</title>
+    <style>
+      h1 {
+        color: black;
+        font-weight: 900;
+        text-align: center;
+      }
+      #cartmain {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        width: 90%;
+        margin: auto;
+      }
+      #cartmain > div {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+      }
+
+      #MSG {
+        display: flex;
+        justify-content: space-around;
+        font-size: 20px;
+        font-weight: 800;
+      }
+      #form2 {
+        display: flex;
+        justify-content: center;
+      }
+      #form2 input{
+          margin: 20px 0 40px 0;
+          padding: 20px 50px;
+          font-size: 20px;
+          font-weight: 700;
+          border-radius: 10px;
+          cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav">
+      <div><a href="Mens.html">Mens</a></div>
+      <div><a href="Women.html">Women's</a></div>
+      <div><a href="Cart.html">Cart</a></div>
+      <div><a href="login.html">Login</a></div>
+      <div><a href="signup.html">Sign-up</a></div>
+    </div>
+    <h1>Cart Section</h1>
+    <div id="MSG">
+      <!-- <div id="per"></div>
+        <div id="pri"></div> -->
+    </div>
+    <div id="cartmain"></div>
+
+    <div id="payment">
+      <form id="form2">
+        <input type="submit" value="Continue to Payment" />
+      </form>
+    </div>
+  </body>
+  <script>
+    var cartdata = JSON.parse(localStorage.getItem("cartdata"));
+
+    var totalsum = cartdata.reduce((sum, ele, index, arr) => {
+      return sum + Number(ele.price);
+    }, 0);
+
+    var item = cartdata.length;
+    var p1 = document.createElement("p");
+    p1.innerText = "Total item's in cart: " + item;
+    var p2 = document.createElement("p");
+    p2.innerText = "Total Amount to be paid: " + totalsum;
+
+    
+    document.querySelector("#MSG").append(p1, p2);
+    cartdata.forEach((ele, index) => {
+      var box = document.createElement("div");
+
+      var img = document.createElement("img");
+      img.src = ele.image_url;
+
+      var name = document.createElement("p");
+      name.innerText = ele.name;
+
+      var price = document.createElement("p");
+      price.innerText = "Price: " + ele.price;
+
+      var sprice = document.createElement("p");
+      sprice.innerText = "Discount price: " + ele.strikedoffprice;
+
+      var remove = document.createElement("button");
+      remove.innerText = "Remove Item";
+
+      remove.addEventListener("click", () => {
+        // event.preventDefault();
+        cartdata.splice(index, 1);
+        // console.log(cartdata);
+        localStorage.setItem("cartdata", JSON.stringify(cartdata));
+        alert("iten Remove Sccessfully");
+        window.location.reload();
+        // addtocart(MENS);
+      });
+
+      box.append(img, name, price, sprice, remove);
+      document.querySelector("#cartmain").append(box);
+    });
+  </script>
+</html>
