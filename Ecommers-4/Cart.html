@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Cart</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="nav">
+      <div><a href="Mens.html">Mens</a></div>
+      <div><a href="Women.html">Women's</a></div>
+      <div><a href="Cart.html">Cart</a></div>
+      <div><a href="login.html">Login</a></div>
+      <div><a href="signup.html">Sign-up</a></div>
+    </div>
+    <h1>Cart Section</h1>
+    <div id="MSG">
+      <!-- <div id="per"></div>
+        <div id="pri"></div> -->
+    </div>
+    <div id="promo">
+      <form id="form3">
+        <input type="text" id="promocode" />
+        <button type="submit">Apply promo code</button>
+      </form>
+    </div>
+    <div id="cartmain"></div>
+
+    <div id="payment">
+      <form id="form2">
+        <!-- <a href="payment.html"> -->
+        <input type="submit" value="Continue to Payment" id="pay" />
+        <!-- </a> -->
+
+      </form>
+    </div>
+  </body>
+  <script>
+    var cartdata = JSON.parse(localStorage.getItem("cartdata"));
+
+    var totalsum = cartdata.reduce((sum, ele, index, arr) => {
+      return sum + Number(ele.price);
+    }, 0);
+
+    var item = cartdata.length;
+    var p1 = document.createElement("p");
+    p1.innerText = "Total item's in cart: " + item;
+    var p2 = document.createElement("p");
+    p2.setAttribute("class", "promobtn");
+    p2.innerText = "Total Amount to be paid: " + totalsum;
+
+    document.querySelector("#MSG").append(p1, p2);
+
+    document.querySelector("#form3").addEventListener("submit", promo);
+
+    function promo(event) {
+      event.preventDefault();
+      var p = document.querySelector("#promocode").value;
+      if (p === "masai30") {
+        var sum = totalsum;
+        sum = Math.floor(sum - sum * 0.3);
+
+        var msg = document.createElement("p");
+        msg.innerText =
+          "Previous value: " + totalsum + ";\nDiscounted value: " + sum;
+        totalsum = sum;
+        document.querySelector(".promobtn").innerText = "";
+        document.querySelector(".promobtn").append(msg);
+        alert("Promocode applied");
+      } else {
+        alert("Wrong promo code");
+      }
+    }
+    cartdata.forEach((ele, index) => {
+      var box = document.createElement("div");
+
+      var img = document.createElement("img");
+      img.src = ele.image_url;
+
+      var name = document.createElement("p");
+      name.innerText = ele.name;
+
+      var price = document.createElement("p");
+      price.innerText = "Price: " + ele.price;
+
+      var sprice = document.createElement("p");
+      sprice.innerText = "Discount price: " + ele.strikedoffprice;
+
+      var remove = document.createElement("button");
+      remove.innerText = "Remove Item";
+
+      remove.addEventListener("click", () => {
+        // event.preventDefault();
+        cartdata.splice(index, 1);
+        // console.log(cartdata);
+        localStorage.setItem("cartdata", JSON.stringify(cartdata));
+
+        // if(cartdata.length==0){
+        //   document.getElementById("MSG").setAttribute("style","display:none;");
+
+        // }
+        alert("iten Remove Sccessfully");
+        window.location.reload();
+        // addtocart(MENS);
+      });
+
+      box.append(img, name, price, sprice, remove);
+      document.querySelector("#cartmain").append(box);
+    });
+
+    document.querySelector("#form2").addEventListener("submit", payment);
+
+    function payment(event) {
+      event.preventDefault();
+      window.location.href="payment.html";
+      // alert("test");
+      // window.location.href = "Mens.html";
+    }
+  </script>
+</html>

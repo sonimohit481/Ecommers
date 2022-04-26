@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Payment</title>
+    <style>
+        #form4{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin:50px auto;
+            background-color: white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        #form4 input{
+            width: 90%;
+            margin:10px auto;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        #form4 div{
+            width: 50%;
+            margin:10px auto;
+        }
+        #paymentbtn{
+            font-size: 15px;
+            font-weight: 500;
+            word-spacing: 2px;
+            letter-spacing: 2px;
+            margin: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cart Section</h1>
+    <div id="mainform">
+
+        <form id="form4">
+            <input type="no" placeholder="Enter 16 digit card no" id="cardno">
+            
+                <input type="text" placeholder="Enter name" id="cardname">
+                <input type="date" placeholder="Expiry date" id="carddate">
+                <input type="number" placeholder="CVV 3 digit no" id="cardcvv">
+            
+            <div>
+                <button type="submit" id="paymentbtn">Make Payment</button>
+            </div>
+        </form>
+    </div>
+    
+</body>
+<script>
+document.querySelector("#form4").addEventListener("submit",payment);
+
+function payment(event){
+    event.preventDefault();
+    var card=document.querySelector("#cardno").value;
+    var name=document.querySelector("#cardname").value;
+    var date=document.querySelector("#carddate").value;
+    var cvv=document.querySelector("#cardcvv").value;
+
+    if(card.length!==16){
+        alert("Enter a valid card no");
+    }
+    if(cvv.length!==3){
+        alert("Enter a valid card no");
+    }
+    else{
+
+        alert("An otp is Sended please Enter it");
+        window.location.href = "otp.html";
+    }
+
+}
+
+</script>
+</html>
