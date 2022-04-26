@@ -380,6 +380,12 @@
       },
     ];
 
+    var cartdata;
+    if (localStorage.getItem("cartdata") === null) {
+      cartdata = [];
+    } else {
+      cartdata = JSON.parse(localStorage.getItem("cartdata"));
+    }
     WOMEN.forEach(function (ele) {
       var box = document.createElement("div");
 
@@ -401,7 +407,7 @@
       cart.addEventListener("click", () => {
         event.preventDefault();
         cartdata.push(ele);
-        console.log(cartdata);
+        // console.log(cartdata);
         localStorage.setItem("cartdata", JSON.stringify(cartdata));
         alert("iten added Sccessfully");
       });
