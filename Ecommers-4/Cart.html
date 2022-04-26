@@ -31,7 +31,10 @@
 
     <div id="payment">
       <form id="form2">
+        <!-- <a href="payment.html"> -->
         <input type="submit" value="Continue to Payment" id="pay" />
+        <!-- </a> -->
+
       </form>
     </div>
   </body>
@@ -108,13 +111,13 @@
       document.querySelector("#cartmain").append(box);
     });
 
+    document.querySelector("#form2").addEventListener("submit", payment);
 
-
-
-    document.querySelector("#form2").addEventListener("submit",payment);
-
-    function payment(){
-      
+    function payment(event) {
+      event.preventDefault();
+      window.location.href="payment.html";
+      // alert("test");
+      // window.location.href = "Mens.html";
     }
   </script>
 </html>

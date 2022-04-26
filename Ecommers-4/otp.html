@@ -1,13 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Otp</title>
-</head>
-<body>
-    <h1>otp Section</h1>
-    
-</body>
+    <style>
+      #form5 {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        margin: 50px auto;
+        background-color: white;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 10px;
+        padding: 20px;
+      }
+      input {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>OTP Section</h1>
+    <div id="otp">
+      <form id="form5">
+        <input type="number" id="no" />
+        <input type="submit" value="check" />
+      </form>
+    </div>
+  </body>
+  <script>
+    document.querySelector("#form5").addEventListener("submit", final);
+    function final(event) {
+      event.preventDefault();
+      var x = document.querySelector("#no").value;
+      if ((x.length == 4) & (x == 1234)) {
+        alert(
+          "Payment Success full\n your order will be deliverd as soon as possible\n happy shopping "
+        );
+        localStorage.removeItem("cartdata");
+        window.location.href = "Mens.html";
+      } else {
+        alert("Wrong otp\n pleaase check again");
+      }
+    }
+  </script>
 </html>
