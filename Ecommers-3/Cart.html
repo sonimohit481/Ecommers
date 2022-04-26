@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <title>Cart</title>
-    <style>
-
-    </style>
+    <style></style>
   </head>
   <body>
     <div id="nav">
@@ -60,12 +58,12 @@
       var p = document.querySelector("#promocode").value;
       if (p === "masai30") {
         var sum = totalsum;
-        sum =Math.floor( sum - sum * 0.3);
-        
+        sum = Math.floor(sum - sum * 0.3);
+
         var msg = document.createElement("p");
         msg.innerText =
           "Previous value: " + totalsum + ";\nDiscounted value: " + sum;
-          totalsum=sum
+        totalsum = sum;
         document.querySelector(".promobtn").innerText = "";
         document.querySelector(".promobtn").append(msg);
         alert("Promocode applied");
@@ -96,6 +94,11 @@
         cartdata.splice(index, 1);
         // console.log(cartdata);
         localStorage.setItem("cartdata", JSON.stringify(cartdata));
+
+        // if(cartdata.length==0){
+        //   document.getElementById("MSG").setAttribute("style","display:none;");
+
+        // }
         alert("iten Remove Sccessfully");
         window.location.reload();
         // addtocart(MENS);
@@ -104,5 +107,14 @@
       box.append(img, name, price, sprice, remove);
       document.querySelector("#cartmain").append(box);
     });
+
+
+
+
+    document.querySelector("#form2").addEventListener("submit",payment);
+
+    function payment(){
+      
+    }
   </script>
 </html>
